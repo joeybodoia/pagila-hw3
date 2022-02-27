@@ -6,3 +6,20 @@
  * HINT:
  * This can be solved with a self join on the film_actor table.
  */
+
+-- actor ids for actors in AMERICAN CIRCUS
+select title from (
+    select title, count(actor_id) as "actor_count" from film 
+    join film_actor using (film_id)
+    where actor_id in (
+        select actor_id from film_actor
+        join film using (film_id)
+        where film.title = 'AMERICAN CIRCUS'
+    )
+    group by title
+)t
+where "actor_count" > 1
+order by title;
+
+
+

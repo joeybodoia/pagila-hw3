@@ -30,4 +30,4 @@ group by
         "month",
         "day"
     )
-order by "year";
+order by "year", "month", "day";
